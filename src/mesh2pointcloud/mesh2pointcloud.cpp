@@ -158,8 +158,6 @@ int main( int argc, char ** argv )
         /* Run through faces and divide them. */
         for ( size_t i(0); i < nfaces; i++ ) {
 
-            std::cerr << old_faces[ i * 3     ] << ' ' << old_faces[ i * 3 + 1 ] << ' ' << old_faces[ i * 3 + 2 ] << std::endl;
-
             /* Get old vertices/points for this face. */
             lssr::coord<float> a( vertices[ old_faces[ i * 3     ] ] );
             lssr::coord<float> b( vertices[ old_faces[ i * 3 + 1 ] ] );
