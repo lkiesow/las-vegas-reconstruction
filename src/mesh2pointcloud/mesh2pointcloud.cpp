@@ -158,10 +158,12 @@ int main( int argc, char ** argv )
         /* Run through faces and divide them. */
         for ( size_t i(0); i < nfaces; i++ ) {
 
+            std::cerr << old_faces[ i * 3     ] << ' ' << old_faces[ i * 3 + 1 ] << ' ' << old_faces[ i * 3 + 2 ] << std::endl;
+
             /* Get old vertices/points for this face. */
-            lssr::coord<float> a( old_vertices[ old_faces[ i * 3     ] ] );
-            lssr::coord<float> b( old_vertices[ old_faces[ i * 3 + 1 ] ] );
-            lssr::coord<float> c( old_vertices[ old_faces[ i * 3 + 2 ] ] );
+            lssr::coord<float> a( vertices[ old_faces[ i * 3     ] ] );
+            lssr::coord<float> b( vertices[ old_faces[ i * 3 + 1 ] ] );
+            lssr::coord<float> c( vertices[ old_faces[ i * 3 + 2 ] ] );
 
             /* Set new vertices/points. */
             vertices[ j     ] = getMidPoint( a, b );
@@ -192,7 +194,7 @@ int main( int argc, char ** argv )
         old_faces = faces;
         nvertices = j;
         nfaces    = k / 3; /* Remember that faces is an interlaced array. */
-        faces.reset( new unsigned int[ 3 * 4 * nfaces ] );
+        faces     = lssr::uintArr( new unsigned int[ 3 * 4 * nfaces ] );
 
     }
 
