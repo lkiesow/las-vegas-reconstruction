@@ -16,9 +16,19 @@ set( CMAKE_CXX_FLAGS         "-O3 -g" )
 set( CMAKE_CXX_FLAGS_RELEASE "-O3 -msse3 -Wno-deprecated-declarations -Wno-unused -Wcpp" )
 set( CMAKE_CXX_FLAGS_DEBUG   "-g -Wall" )
 
+####
+## Special options for build type release
+##############################
 if ( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" ) 
-    # TODO: Build shared libs
+
+    # Build shared libs if not set manually
+    if ( "${BUILD_SHARED_LIBS}" STREQUAL "" )
+        set( BUILD_SHARED_LIBS true )
+        message( STATUS "Set build type for libraries to shared." )
+    endif ( "${BUILD_SHARED_LIBS}" STREQUAL "" )
+
 endif ( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" ) 
+
 
 ###############################################################
 # EXTERNAL LIBRARIES
@@ -36,6 +46,9 @@ if(NABO_FOUND)
    include_directories(${NABO_INCLUDE_DIRS})
    link_directories(${NABO_LIBRARIES})
    add_definitions(-D_USE_NABO)
+else(NABO_FOUND)
+    message( WARNING "Nabo was not found. "
+        "Nabo related stuff will be disabled." )
 endif(NABO_FOUND)
 
 
@@ -62,12 +75,12 @@ if(PCL_FOUND)
             add_definitions(-D_PCL_VERSION_12_)
 		endif ( "${PCL_VERSION}" VERSION_GREATER "1.2" )
     else ( "${PCL_VERSION}" VERSION_GREATER "1.0" )
-        message( "-- Your PCL version is to old.." )
-        message( "-- PCL related stuff will be disabled." )
+        message( WARNING "Your PCL version is to old. "
+            "PCL related stuff will be disabled." )
 	endif ( "${PCL_VERSION}" VERSION_GREATER "1.0" )
 else(PCL_FOUND)
-        message( "-- No PCL found." )
-        message( "-- PCL related stuff will be disabled." )
+    message( WARNING "No PCL found. "
+        "PCL related stuff will be disabled." )
 endif(PCL_FOUND)
 
 
@@ -131,21 +144,21 @@ endif(UNIX)
 
 find_package(GLUT REQUIRED)
 if ( GLUT_FOUND )
-    message( "-- Found OpenGL Utility Toolkit" )
+    message( STATUS "Found OpenGL Utility Toolkit" )
 else ( GLUT_FOUND )
-    message( SEND_ERROR "-- could not find OpenGL Utility Toolkit" )
+    message( SEND_ERROR "Could not find OpenGL Utility Toolkit" )
 endif ( GLUT_FOUND )
 
 if ( GLUT_Xmu_LIBRARY )
-    message( "-- Found X.Org X11 libXmu/libXmuu runtime libraries" )
+    message( STATUS "Found X.Org X11 libXmu/libXmuu runtime libraries" )
 else ( GLUT_Xmu_LIBRARY )
-    message( SEND_ERROR "-- Could not find X.Org X11 libXmu/libXmuu runtime libraries" )
+    message( SEND_ERROR "Could not find X.Org X11 libXmu/libXmuu runtime libraries" )
 endif ( GLUT_Xmu_LIBRARY )
 
 if ( GLUT_Xi_LIBRARY )
-    message( "-- Found X.Org X11 libXi runtime library" )
+    message( STATUS "Found X.Org X11 libXi runtime library" )
 else ( GLUT_Xi_LIBRARY )
-    message( SEND_ERROR "-- Could not find X.Org X11 libXi runtime library" )
+    message( SEND_ERROR "Could not find X.Org X11 libXi runtime library" )
 endif ( GLUT_Xi_LIBRARY )
 
 ##############################################################
