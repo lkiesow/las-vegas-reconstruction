@@ -6,3 +6,7 @@ target_link_libraries( colorize lssr )
 if(PCL_FOUND)
     target_link_libraries( colorize ${PCL_LIBRARIES} )
 endif(PCL_FOUND)
+
+
+INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/colorize
+    DESTINATION bin)

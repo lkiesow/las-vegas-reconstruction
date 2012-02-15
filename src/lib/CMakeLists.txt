@@ -25,7 +25,6 @@ set(LSSR_SOURCES
 
 
 add_library(lssr ${LSSR_SOURCES})
-message(STATUS "Building static library")
 
 set_target_properties(lssr PROPERTIES LIBRARY_OUTPUT_DIRECTORY
     ${CMAKE_SOURCE_DIR}/lib)
@@ -35,3 +34,16 @@ target_link_libraries(lssr ${Boost_PROGRAM_OPTIONS_LIBRARY}
     ${OpenMP_CXX_FLAGS} ${OPENGL_LIBRARY} )
 target_link_libraries(lssr laslib)
 target_link_libraries(lssr rply)
+
+
+# Install target for lssr
+if ( BUILD_SHARED_LIBS )
+    # Set library dir.
+    if ( "${LIB_INSTALL_DIR}" STREQUAL "" )
+        set( LIB_INSTALL_DIR "lib" )
+    endif ( "${LIB_INSTALL_DIR}" STREQUAL "" )
+
+    # Set install target.
+    INSTALL( TARGETS lssr
+        LIBRARY DESTINATION ${LIB_INSTALL_DIR} )
+endif ( BUILD_SHARED_LIBS )

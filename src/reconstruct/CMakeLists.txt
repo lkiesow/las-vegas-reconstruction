@@ -16,3 +16,7 @@ target_link_libraries(reconstruct ${PCL_LIBRARIES})
 if( ${NABO_FOUND} )
     target_link_libraries(reconstruct ${NABO_LIBRARIES})
 endif( ${NABO_FOUND} )
+
+
+INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/reconstruct
+    DESTINATION bin)

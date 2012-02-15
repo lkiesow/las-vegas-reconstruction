@@ -37,4 +37,16 @@ set(LASLIB_SOURCES
 
 ADD_LIBRARY(laslib ${LASLIB_SOURCES})
 set_target_properties(laslib PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-	
+
+
+# Install target for laslib
+if ( BUILD_SHARED_LIBS )
+    # Set library dir.
+    if ( "${LIB_INSTALL_DIR}" STREQUAL "" )
+        set( LIB_INSTALL_DIR "lib" )
+    endif ( "${LIB_INSTALL_DIR}" STREQUAL "" )
+
+    # Set install target.
+    INSTALL( TARGETS laslib
+        LIBRARY DESTINATION ${LIB_INSTALL_DIR} )
+endif ( BUILD_SHARED_LIBS )

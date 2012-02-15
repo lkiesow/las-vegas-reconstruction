@@ -15,3 +15,7 @@ target_link_libraries(ascii_convert ${Boost_FILESYSTEM_LIBRARY}
 	${Boost_PROGRAM_OPTIONS_LIBRARY})
 	
 target_link_libraries(ascii_convert ${PCL_LIBRARIES})
+
+
+INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ascii_convert
+    DESTINATION bin)

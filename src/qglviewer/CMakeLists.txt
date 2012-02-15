@@ -84,3 +84,7 @@ target_link_libraries(qviewer ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY}
     ${Boost_PROGRAM_OPTIONS_LIBRARY})
 target_link_libraries(qviewer ${PCL_LIBRARIES})
+
+
+INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/qviewer
+    DESTINATION bin)
