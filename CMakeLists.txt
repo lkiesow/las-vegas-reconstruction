@@ -16,6 +16,10 @@ set( CMAKE_CXX_FLAGS         "-O3 -g" )
 set( CMAKE_CXX_FLAGS_RELEASE "-O3 -msse3 -Wno-deprecated-declarations -Wno-unused -Wcpp" )
 set( CMAKE_CXX_FLAGS_DEBUG   "-g -Wall" )
 
+if ( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" ) 
+    # TODO: Build shared libs
+endif ( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" ) 
+
 ###############################################################
 # EXTERNAL LIBRARIES
 ###############################################################

@@ -7,7 +7,7 @@ set(RECONSTRUCT_SOURCES
 add_executable(reconstruct ${RECONSTRUCT_SOURCES})
 set_target_properties(reconstruct PROPERTIES BINARY_OUTPUT_DIRECTORY
     ${CMAKE_SOURCE_DIR}/bin)
-target_link_libraries(reconstruct staticlssr)
+target_link_libraries(reconstruct lssr)
 target_link_libraries(reconstruct ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY}
     ${Boost_PROGRAM_OPTIONS_LIBRARY})

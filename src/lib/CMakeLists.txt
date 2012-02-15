@@ -24,14 +24,14 @@ set(LSSR_SOURCES
 )
 
 
-add_library(staticlssr ${LSSR_SOURCES})
+add_library(lssr ${LSSR_SOURCES})
 message(STATUS "Building static library")
 
-set_target_properties(staticlssr PROPERTIES LIBRARY_OUTPUT_DIRECTORY
+set_target_properties(lssr PROPERTIES LIBRARY_OUTPUT_DIRECTORY
     ${CMAKE_SOURCE_DIR}/lib)
 
-target_link_libraries(staticlssr ${Boost_PROGRAM_OPTIONS_LIBRARY}
+target_link_libraries(lssr ${Boost_PROGRAM_OPTIONS_LIBRARY}
     ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_FILESYSTEM_LIBRARY}
     ${OpenMP_CXX_FLAGS} ${OPENGL_LIBRARY} )
-target_link_libraries(staticlssr laslib)
-target_link_libraries(staticlssr rply)
+target_link_libraries(lssr laslib)
+target_link_libraries(lssr rply)
